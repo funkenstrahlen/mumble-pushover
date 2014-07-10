@@ -12,23 +12,23 @@ Pushover.configure do |config|
 end
 
 # configure mumble
-cli = Mumble::Client.new('serverdomain') do |config|
+mumble = Mumble::Client.new('serverdomain') do |config|
 	config.username = CONFIG['mumble_bot_name']
 	config.password = CONFIG['mumble_password']
 end
 
 # connect to mumble
-cli.connect
-cli.mute
-cli.deafen
+mumble.connect
+mumble.mute
+mumble.deafen
 # join all channels
 CONFIG['mumble_channel_list'].each do |channel|
-	cli.join_channel(channel)
+	mumble.join_channel(channel)
 end
 
 begin
 	# setup callback on text message and send pushover message on mention
-	cli.on_text_message do |message|
+	mumble.on_text_message do |message|
 		# check if user was highlighted
 		if message.include? CONFIG['mumble_username']
 			puts message
@@ -38,7 +38,7 @@ begin
 	end
 rescue Interrupt
 	# program quits with CTRL-C
-	cli.disconnect
+	mumble.disconnect
 	puts "\nexiting..."
 rescue Exception => e
 	puts e
