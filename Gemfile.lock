@@ -1,0 +1,45 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (4.1.4)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.1)
+      tzinfo (~> 1.1)
+    bini (0.7.0)
+      sys-proctable
+    ffi (1.9.3)
+    hashie (3.2.0)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
+    i18n (0.6.11)
+    json (1.8.1)
+    minitest (5.4.0)
+    multi_json (1.10.1)
+    multi_xml (0.5.5)
+    mumble-ruby (1.0.2)
+      activesupport
+      hashie
+      opus-ruby
+      ruby_protobuf
+    opus-ruby (0.0.1)
+      ffi
+    pushover (1.0.4)
+      bini (= 0.7.0)
+      httparty (= 0.11.0)
+      yajl-ruby (= 1.1.0)
+    ruby_protobuf (0.4.11)
+    sys-proctable (0.9.4)
+    thread_safe (0.3.4)
+    tzinfo (1.2.1)
+      thread_safe (~> 0.1)
+    yajl-ruby (1.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  mumble-ruby
+  pushover
