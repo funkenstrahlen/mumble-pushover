@@ -12,7 +12,7 @@ Pushover.configure do |config|
 end
 
 # configure mumble
-mumble = Mumble::Client.new('serverdomain') do |config|
+mumble = Mumble::Client.new(CONFIG['mumble_server'], port: CONFIG['mumble_server_port']) do |config|
 	config.username = CONFIG['mumble_bot_name']
 	config.password = CONFIG['mumble_password']
 end

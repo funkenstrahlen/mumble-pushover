@@ -5,5 +5,7 @@ pushover_app_token: 'TOKEN'
 # mumble config
 mumble_bot_name: 'pushover_bot'
 mumble_username: 'i42n' # the username to highlight
+mumble_server: 'server_ip or domain'
+mumble_server_port: '64738'
 mumble_password: ''
 mumble_channel: 'channel'
