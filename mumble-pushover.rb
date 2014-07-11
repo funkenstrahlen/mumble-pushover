@@ -3,7 +3,8 @@ require 'pushover'
 require 'yaml'
 
 # read config file
-CONFIG = Yaml.load_file("config.yml") unless defined? CONFIG
+puts 'reading configuration file...'
+CONFIG = YAML.load_file("config.yml") unless defined? CONFIG
 
 # configure pushover
 Pushover.configure do |config|
@@ -12,32 +13,38 @@ Pushover.configure do |config|
 end
 
 # configure mumble
-mumble = Mumble::Client.new(CONFIG['mumble_server'], port: CONFIG['mumble_server_port']) do |config|
+mumble = Mumble::Client.new(CONFIG['mumble_server'], CONFIG['mumble_server_port']) do |config|
 	config.username = CONFIG['mumble_bot_name']
 	config.password = CONFIG['mumble_password']
 end
 
 # connect to mumble
+puts 'connecting...'
 mumble.connect
+sleep 2 # wait until connection is established
+puts 'connected to server'
 mumble.mute
 mumble.deafen
 mumble.join_channel(CONFIG['mumble_channel'])
+puts 'joined channel ' + CONFIG['mumble_channel']
 
-begin
-	# setup callback on text message and send pushover message on mention
-	mumble.on_text_message do |message|
-		# check if user was highlighted
-		if message.include? CONFIG['mumble_username']
-			puts message
-			puts 'sending pushover...'
-			Pushover.notification(message: message, title: 'title')
-		end
+# setup callback on text message and send pushover message on mention
+puts 'waiting for messages...'
+mumble.on_text_message do |message|
+	content = message.message
+	# check if user was highlighted
+	if content.include? CONFIG['mumble_username']
+		# send pushover
+		title = 'mumble#' + CONFIG['mumble_channel']
+		puts 'hightlight detected: "' + content + '"'
+		puts 'sending pushover...'
+		Pushover.notification(message: content, title: title)
 	end
-rescue Interrupt
-	# program quits with CTRL-C
-	mumble.disconnect
-	puts "\nexiting..."
-rescue Exception => e
-	puts e
 end
+
+# handle program exit
+puts 'quit by pressing any key'
+gets
+puts "\nexiting..."
+mumble.disconnect
 
