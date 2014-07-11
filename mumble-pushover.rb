@@ -21,10 +21,7 @@ end
 mumble.connect
 mumble.mute
 mumble.deafen
-# join all channels
-CONFIG['mumble_channel_list'].each do |channel|
-	mumble.join_channel(channel)
-end
+mumble.join_channel(CONFIG['mumble_channel'])
 
 begin
 	# setup callback on text message and send pushover message on mention

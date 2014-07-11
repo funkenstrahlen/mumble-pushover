@@ -6,4 +6,4 @@ pushover_app_token: 'TOKEN'
 mumble_bot_name: 'pushover_bot'
 mumble_username: 'i42n' # the username to highlight
 mumble_password: ''
-mumble_channel_list: ['channel1', 'channel2']
+mumble_channel: 'channel'
