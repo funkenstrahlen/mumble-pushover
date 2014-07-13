@@ -19,12 +19,13 @@ GEM
     minitest (5.4.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
-    mumble-ruby (1.0.2)
+    mumble-ruby (1.1.0)
       activesupport
       hashie
       opus-ruby
       ruby_protobuf
-    opus-ruby (0.0.1)
+      wavefile
+    opus-ruby (1.0.1)
       ffi
     pushover (1.0.4)
       bini (= 0.7.0)
@@ -35,6 +36,7 @@ GEM
     thread_safe (0.3.4)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
+    wavefile (0.6.0)
     yajl-ruby (1.1.0)
 
 PLATFORMS
