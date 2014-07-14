@@ -14,7 +14,7 @@ end
 
 # configure mumble
 mumble = Mumble::Client.new(CONFIG['mumble_server'], CONFIG['mumble_server_port']) do |config|
-	config.username = CONFIG['mumble_bot_name']
+	config.username = CONFIG['mumble_bot_name'] + '_' + CONFIG['mumble_username']
 	config.password = CONFIG['mumble_password']
 end
 
@@ -41,6 +41,8 @@ mumble.on_connected do
 			puts 'hightlight detected: "' + content + '"'
 			puts 'sending pushover...'
 			Pushover.notification(message: content, title: title)
+			# inform mumble user that push message was send
+			mumble.text_channel(CONFIG['mumble_channel'], CONFIG['mumble_username'] + ' did receive a push message with your message. Please wait until he connects to the server to talk to you.')
 		end
 	end
 end

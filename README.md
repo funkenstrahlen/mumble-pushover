@@ -1,4 +1,6 @@
-# How to use tldr
+This is a chat bot for mumble servers. It will connect to a specific channel on a mumble server and wait for users to mention you in the chat. You will receive every message as a push message via [Pushover](https://pushover.net/). The user who mentioned you in the channel will get a short info message from the bot as a reply.
+
+# How to use
 
 Create `config.yml` by copying the `config_example.yml` and applying your settings. To use pushover you have to create a pushover account and a pushover application (to get the app token). Run `bundle install`. Call `ruby mumble-pushover.rb`. Quit by pressing ENTER.
 
